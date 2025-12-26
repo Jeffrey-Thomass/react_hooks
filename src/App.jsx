@@ -1,4 +1,6 @@
 import React, { useState , useEffect, useRef } from 'react'
+import Navbar from './components/Navbar.jsx';
+import { counterContext } from './context/context.js';
 
 export default function App() {
   const [count , setCount] = useState(0);
@@ -21,7 +23,11 @@ export default function App() {
   }
 
   return (
-    <div>
+    <>
+    <counterContext.Provider value={{count , input}} >
+    {/* <Navbar count={count}/> */}
+    <Navbar/>
+      <div>
       <h3>Hello World My name is Jeffrey </h3>
       <h2>{count}</h2>
       {count < 20 && (
@@ -43,5 +49,8 @@ export default function App() {
 
     <input type="text" ref={inputRef} />
     </div>
+    </counterContext.Provider>
+
+    </>
   )
 }
