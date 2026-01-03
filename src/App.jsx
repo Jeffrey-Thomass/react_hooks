@@ -2,6 +2,9 @@ import React, { useState , useEffect, useRef } from 'react'
 import Navbar from './components/Navbar.jsx';
 import { counterContext } from './context/context.js';
 
+import axios from 'axios';
+import api from './api/axios.js';
+
 export default function App() {
   const [count , setCount] = useState(0);
   const[input , setInput] = useState("");
@@ -14,6 +17,10 @@ export default function App() {
   // useEffect(() => {
   //   console.log("re-rendered")
   // } ,[count])
+  useEffect(() => {
+    api.get("/products/1")
+    .then(res => console.log(res.data))
+  })
 
   useEffect(() => {
     inputRef.current.focus()     // for useRef hook
@@ -21,6 +28,10 @@ export default function App() {
   const IncrementRef = () => {
     countRef.current = countRef.current + 1;
   }
+
+  useEffect(() => {
+    
+  })
 
   return (
     <>
